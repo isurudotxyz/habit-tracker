@@ -17,7 +17,7 @@ export default function AddHabitForm() {
           setHabitName(e.target.value);
         }}
       />
-      <button type="submit">button</button>
+      <button type="submit">Submit</button>
     </form>
   );
 }

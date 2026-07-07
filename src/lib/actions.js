@@ -1,5 +1,5 @@
 "use server";
-
+// client - server bridge
 import { HABIT } from "./mockData";
 import { revalidatePath } from "next/cache";
 
@@ -24,5 +24,11 @@ export async function deleteHabit(habitIdToDelete) {
   );
   HABIT.length = 0;
   HABIT.push(...NEWHABIT);
+  revalidatePath("/");
+}
+
+export async function updateHabit(habitId, newTitle) {
+  const index = HABIT.findIndex(({ id }) => id === habitId);
+  HABIT[index].title = newTitle;
   revalidatePath("/");
 }
