@@ -2,23 +2,28 @@ export const HABIT = [
   {
     id: "habit-id-exercise",
     title: "exercise",
-    createdAt: "2026-05-03",
+    createdAt: "2026-02-03",
   },
   {
     id: "habit-id-study",
     title: "study",
-    createdAt: "2026-05-05",
+    createdAt: "2026-07-10",
   },
 ];
 export const COMPLETIONS = [
   {
-    id: "comp-1",
+    id: crypto.randomUUID(),
     habitId: "habit-id-exercise",
-    date: "2026-05-05",
+    date: "2026-07-10",
   },
   {
-    id: "comp-2",
+    id: crypto.randomUUID(),
     habitId: "habit-id-exercise",
-    date: "2026-05-06",
+    date: "2026-07-09",
+  },
+  {
+    id: crypto.randomUUID(),
+    habitId: "habit-id-exercise",
+    date: "2026-07-08",
   },
 ];

@@ -1,10 +1,16 @@
 "use server";
 // client - server bridge
-import { HABIT } from "./mockData";
+import { HABIT, COMPLETIONS } from "./mockData";
 import { revalidatePath } from "next/cache";
 
 export async function markHabitComplete(habitId) {
-  console.log({ success: true, habitId });
+  const completionObject = {
+    id: crypto.randomUUID(),
+    habitId,
+    date: new Date().toISOString().split("T")[0],
+  };
+  COMPLETIONS.push(completionObject);
+  console.log(COMPLETIONS);
   revalidatePath("/");
 }
 
