@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header/Header";
-import HabitCard from "@/components/HabitCard/HabitCard";
+import HabitList from "./HabitList";
 import { HABIT } from "@/lib/mockData";
 import Link from "next/link";
 export default function Home() {
@@ -8,9 +8,7 @@ export default function Home() {
       <Header />
       <Link href="/habits/new"> Create New Component</Link>
       <div>hello</div>
-      {HABIT.map((habit) => (
-        <HabitCard key={habit.id} habit={habit} />
-      ))}
+      <HabitList habits={HABIT} />
     </>
   );
 }
