@@ -1,6 +1,8 @@
-"use server";
 // client - server bridge
+"use server";
+import { success, z } from "zod";
 import { HABIT, COMPLETIONS } from "./mockData";
+import { HabitSchema } from "./schema";
 import { revalidatePath } from "next/cache";
 
 export async function markHabitComplete(habitId) {
@@ -15,6 +17,13 @@ export async function markHabitComplete(habitId) {
 }
 
 export async function createHabit(habitName) {
+  const result = HabitSchema.safeParse({ title: habitName });
+
+  if (!result.success) {
+    const errors = z.flattenError(result.error);
+    return { success: false, errors };
+  }
+
   const newHabit = {
     id: `habit-id-${habitName.replaceAll(" ", "-")}`,
     title: habitName,
@@ -22,6 +31,8 @@ export async function createHabit(habitName) {
   };
   HABIT.push(newHabit);
   revalidatePath("/");
+
+  return { success: true };
 }
 
 export async function deleteHabit(habitIdToDelete) {
