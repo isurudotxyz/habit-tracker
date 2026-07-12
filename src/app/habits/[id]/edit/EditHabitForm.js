@@ -5,11 +5,17 @@ import { useRouter } from "next/navigation";
 export default function EditHabitForm({ habitId, title }) {
   const [newTitle, setNewTitle] = useState(title);
   const router = useRouter();
+  const [error, setError] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await updateHabit(habitId, newTitle);
-    router.push("/");
+    const result = await updateHabit(habitId, newTitle);
+    if (!result.success) {
+      setError(result.errors.fieldErrors.title);
+    } else {
+      setError(null);
+      router.push("/");
+    }
   }
 
   return (
@@ -21,6 +27,7 @@ export default function EditHabitForm({ habitId, title }) {
           setNewTitle(e.target.value);
         }}
       />
+      {error}
       <button type="submit">Submit</button>
     </form>
   );

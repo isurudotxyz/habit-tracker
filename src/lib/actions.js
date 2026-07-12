@@ -45,7 +45,14 @@ export async function deleteHabit(habitIdToDelete) {
 }
 
 export async function updateHabit(habitId, newTitle) {
+  const result = HabitSchema.safeParse({ title: newTitle });
+  if (!result?.success) {
+    const errors = z.flattenError(result.error);
+    return { success: false, errors };
+  }
+
   const index = HABIT.findIndex(({ id }) => id === habitId);
   HABIT[index].title = newTitle;
   revalidatePath("/");
+  return { success: true };
 }
