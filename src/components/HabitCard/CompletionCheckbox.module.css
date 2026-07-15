@@ -1,0 +1,18 @@
+/* fix checkbox focusring */
+.hiddenCheckBox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+label:has(.hiddenCheckBox:focus-visible) {
+  text-decoration: underline;
+}
+
+.bracketDisplay::before {
+  content: "[ ]";
+}
+
+.hiddenCheckBox:checked + .bracketDisplay::before {
+  content: "[x]";
+}

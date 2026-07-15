@@ -1,0 +1,6 @@
+.deleteButton {
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--color-bg);
+  background-color: var(--color-danger);
+}

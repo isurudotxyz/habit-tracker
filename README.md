@@ -1,4 +1,4 @@
-# Habit Tracker
+# HABIT TRACKER
 
 > A full-stack habit tracker built with Next.js (App Router), React, and JavaScript.
 > Built as a learning project to understand modern web development patterns end to end.
@@ -18,7 +18,7 @@
 
 ---
 
-## Features
+## [FEATURES]
 
 - Create, edit, and delete habits
 - Mark habits complete for the day
@@ -26,6 +26,8 @@
 - Optimistic UI for instant feedback on create and delete
 - Form validation with Zod, including inline error messages
 - Error boundaries for graceful failure handling (e.g. visiting an edit page for a deleted habit)
+
+---
 
 ## [ STACK ]
 

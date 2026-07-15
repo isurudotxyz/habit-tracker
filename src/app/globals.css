@@ -55,6 +55,7 @@ button,
 textarea,
 select {
   font: inherit;
+  border: 1px dotted var(--color-border);
 }
 a {
   color: inherit;
