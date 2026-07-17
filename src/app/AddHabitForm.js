@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { createHabit } from "@/lib/actions";
 import { startTransition } from "react";
+import styles from "./AddHabitForm.module.css";
 
 export default function AddHabitForm({ setIsModalOpen, addFunction }) {
   const [habitName, setHabitName] = useState("");
@@ -21,17 +22,37 @@ export default function AddHabitForm({ setIsModalOpen, addFunction }) {
     }
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={habitName}
-        onChange={(e) => {
-          setHabitName(e.target.value);
+    <div
+      className={styles.overlay}
+      onClick={(e) => {
+        setIsModalOpen(false);
+      }}
+    >
+      <div
+        className={styles.modal}
+        onClick={(e) => {
+          e.stopPropagation();
         }}
-      />
-      {error}
+      >
+        <form onSubmit={handleSubmit}>
+          <input
+            className={styles.input}
+            type="text"
+            value={habitName}
+            onChange={(e) => {
+              setHabitName(e.target.value);
+            }}
+          />
+          <button type="button" onClick={() => setIsModalOpen(false)}>
+            [x]
+          </button>
+          {error && <span className={styles.error}>{error + " "}</span>}
 
-      <button type="submit">Submit</button>
-    </form>
+          <button className={styles.submitButton} type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
