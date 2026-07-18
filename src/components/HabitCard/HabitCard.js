@@ -1,5 +1,5 @@
 import React from "react";
-
+import CompletionGraph from "../CompletionGraph/CompletionGraph";
 import CompletionCheckbox from "./CompletionCheckbox";
 import DeleteButton from "./DeleteButton";
 import { calculateStreak } from "@/lib/habits";
@@ -17,6 +17,7 @@ export default function HabitCard({ habit, deleteFunction }) {
       </div>
       <div className={styles.right}>
         <span className={styles.streak}>streak: {streak}</span>
+        <CompletionGraph habitId={habit.id}></CompletionGraph>
         <EditButton habitId={habit.id} title={habit.title}></EditButton>
         <DeleteButton habitId={habit.id} deleteFunction={deleteFunction} />
       </div>

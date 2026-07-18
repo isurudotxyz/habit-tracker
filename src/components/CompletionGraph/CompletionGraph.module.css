@@ -1,0 +1,18 @@
+.graph {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  overflow-x: auto;
+}
+.week {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.day {
+  font-size: 0.6rem;
+  line-height: 1;
+  white-space: nowrap;
+}
