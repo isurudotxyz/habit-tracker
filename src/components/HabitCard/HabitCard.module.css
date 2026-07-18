@@ -14,7 +14,7 @@
 .right {
   gap: 0.75rem;
 }
-.editLink {
+.editButton {
   display: inline-block;
   cursor: pointer;
   font-family: var(--font-mono), monospace;

@@ -1,0 +1,10 @@
+.editButton {
+  display: inline-block;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--font-size-sm);
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border: 1px dotted var(--color-bg);
+  padding: 0.15rem 0.5rem;
+}

@@ -9,7 +9,7 @@ export default function HabitList({ habits }) {
     habits,
     habitReducer,
   );
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   function habitReducer(currentState, action) {
     if (action.type === "delete") {
@@ -30,14 +30,14 @@ export default function HabitList({ habits }) {
     <>
       <button
         onClick={() => {
-          setIsModalOpen(true);
+          setIsAddModalOpen(true);
         }}
       >
         Add Habit
       </button>
-      {isModalOpen && (
+      {isAddModalOpen && (
         <AddHabitForm
-          setIsModalOpen={setIsModalOpen}
+          setIsAddModalOpen={setIsAddModalOpen}
           addFunction={setOptimisticList}
         />
       )}

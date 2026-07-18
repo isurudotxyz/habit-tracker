@@ -1,5 +1,5 @@
 import { getHabitById } from "@/lib/habits";
-import EditHabitForm from "./EditHabitForm";
+import EditHabitForm from "../../../../components/HabitCard/EditHabitForm";
 
 export default async function EditHabitPage({ params }) {
   const resolvedParams = await params;

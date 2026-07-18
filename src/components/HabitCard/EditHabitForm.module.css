@@ -1,0 +1,30 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(51, 51, 51, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  background-color: var(--color-bg);
+  padding: 1.5rem;
+  width: min(90vw, 400px);
+}
+.input {
+  width: 100%;
+  font-size: var(--font-size-base);
+  background-color: var(--color-bg);
+  padding: 0.5rem;
+}
+.error {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+}
+.submitButton {
+  cursor: pointer;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  padding: 0.4rem 1rem;
+  margin-top: 0.75rem;
+}

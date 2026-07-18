@@ -4,7 +4,7 @@ import { createHabit } from "@/lib/actions";
 import { startTransition } from "react";
 import styles from "./AddHabitForm.module.css";
 
-export default function AddHabitForm({ setIsModalOpen, addFunction }) {
+export default function AddHabitForm({ setIsAddModalOpen, addFunction }) {
   const [habitName, setHabitName] = useState("");
   const [error, setError] = useState(null);
   async function handleSubmit(e) {
@@ -16,7 +16,7 @@ export default function AddHabitForm({ setIsModalOpen, addFunction }) {
       startTransition(() => {
         addFunction({ type: "add", habitName });
       });
-      setIsModalOpen(false);
+      setIsAddModalOpen(false);
       setError(null);
       setHabitName("");
     }
@@ -25,7 +25,7 @@ export default function AddHabitForm({ setIsModalOpen, addFunction }) {
     <div
       className={styles.overlay}
       onClick={(e) => {
-        setIsModalOpen(false);
+        setIsAddModalOpen(false);
       }}
     >
       <div
@@ -43,7 +43,7 @@ export default function AddHabitForm({ setIsModalOpen, addFunction }) {
               setHabitName(e.target.value);
             }}
           />
-          <button type="button" onClick={() => setIsModalOpen(false)}>
+          <button type="button" onClick={() => setIsAddModalOpen(false)}>
             [x]
           </button>
           {error && <span className={styles.error}>{error + " "}</span>}
