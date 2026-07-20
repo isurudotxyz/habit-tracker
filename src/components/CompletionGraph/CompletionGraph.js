@@ -8,15 +8,15 @@ const DAYS_BY_MODE = {
   year: 365,
 };
 
-export default function CompletionGraph({ habitId }) {
+export default function CompletionGraph({ habitId, completions }) {
   const [mode, setMode] = useState("week");
   const daysBack = DAYS_BY_MODE[mode];
-  const history = getCompletionHistory(habitId, daysBack);
+  const history = getCompletionHistory(completions, habitId, daysBack);
   const weekArray = groupIntoWeeks(history);
   return (
     <div>
       <select value={mode} onChange={(e) => setMode(e.target.value)}>
-        <option selected value="week">
+        <option defaultValue value="week">
           week
         </option>
         <option value="month">month</option>

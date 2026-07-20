@@ -4,7 +4,7 @@ import AddHabitForm from "./AddHabitForm";
 
 import HabitCard from "@/components/HabitCard/HabitCard";
 
-export default function HabitList({ habits }) {
+export default function HabitList({ habits, completions }) {
   const [optimisticList, setOptimisticList] = useOptimistic(
     habits,
     habitReducer,
@@ -43,6 +43,7 @@ export default function HabitList({ habits }) {
       )}
       {optimisticList.map((habit) => (
         <HabitCard
+          completions={completions}
           key={habit.id}
           habit={habit}
           deleteFunction={() =>

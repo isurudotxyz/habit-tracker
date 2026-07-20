@@ -1,19 +1,26 @@
 // client - server bridge
 "use server";
 import { success, z } from "zod";
-import { HABIT, COMPLETIONS } from "./mockData";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
+import { habits, completions } from "@/db/schema";
 import { HabitSchema } from "./schema";
 import { revalidatePath } from "next/cache";
 
 export async function markHabitComplete(habitId) {
-  const completionObject = {
-    id: crypto.randomUUID(),
+  // const completionObject = {
+  //   id: crypto.randomUUID(),
+  //   habitId,
+  //   date: new Date().toISOString().split("T")[0],
+  // };
+  await db.insert(completions).values({
     habitId,
     date: new Date().toISOString().split("T")[0],
-  };
-  COMPLETIONS.push(completionObject);
-  console.log(COMPLETIONS);
+  });
+  // comple.push(completionObject);
+  // console.log(COMPLETIONS);
   revalidatePath("/");
+  return { success: true };
 }
 
 export async function createHabit(habitName) {
@@ -24,23 +31,22 @@ export async function createHabit(habitName) {
     return { success: false, errors };
   }
 
-  const newHabit = {
-    id: `habit-id-${habitName.replaceAll(" ", "-")}`,
+  // const newHabit = {
+  //   title: habitName,
+  //   createdAt: new Date().toISOString().split("T")[0],
+  // };
+  await db.insert(habits).values({
     title: habitName,
     createdAt: new Date().toISOString().split("T")[0],
-  };
-  HABIT.push(newHabit);
+  });
   revalidatePath("/");
 
   return { success: true };
 }
 
 export async function deleteHabit(habitIdToDelete) {
-  const NEWHABIT = HABIT.filter(
-    ({ id, title, createdAt }) => id !== habitIdToDelete,
-  );
-  HABIT.length = 0;
-  HABIT.push(...NEWHABIT);
+  await db.delete(habits).where(eq(habits.id, habitIdToDelete));
+
   revalidatePath("/");
 }
 
@@ -50,9 +56,14 @@ export async function updateHabit(habitId, newTitle) {
     const errors = z.flattenError(result.error);
     return { success: false, errors };
   }
-
-  const index = HABIT.findIndex(({ id }) => id === habitId);
-  HABIT[index].title = newTitle;
+  await db
+    .update(habits)
+    .set({
+      title: newTitle,
+    })
+    .where(eq(habits.id, habitId));
+  // const index = HABIT.findIndex(({ id }) => id === habitId);
+  // HABIT[index].title = newTitle;
   revalidatePath("/");
   return { success: true };
 }
