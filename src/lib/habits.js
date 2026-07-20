@@ -1,12 +1,6 @@
-import { HABIT } from "./mockData";
-import { COMPLETIONS } from "./mockData";
-export function getHabitById(id) {
-  return HABIT.find((habit) => habit.id === id);
-}
-
-export function calculateStreak(habitId) {
-  const habitCompletions = COMPLETIONS.filter(
-    (completion) => completion.habitId === habitId,
+export function calculateStreak(habitId, allCompletions) {
+  const habitCompletions = allCompletions.filter(
+    (comp) => comp.habitId === habitId,
   );
   habitCompletions.sort((a, b) => new Date(b.date) - new Date(a.date));
   let cursorDate;
@@ -28,8 +22,8 @@ export function calculateStreak(habitId) {
   }
   return streak;
 }
-export function getCompletionHistory(habitId, daysBack) {
-  const habitCompletions = COMPLETIONS.filter(
+export function getCompletionHistory(allCompletions, habitId, daysBack) {
+  const habitCompletions = allCompletions.filter(
     (completion) => completion.habitId === habitId,
   );
   const completionArray = [];
