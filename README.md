@@ -12,8 +12,8 @@
 [x] Optimistic UI
 [x] Zod validation
 [x] Error boundaries
+[x] Real database(Sqlite + drizzle)
 [ ] Styling (in progress)
-[ ] Real database
 [ ] PWA / push notifications
 
 ---
@@ -31,10 +31,13 @@
 
 ## [ STACK ]
 
-| Layer      | Choice                                                       |
 | ---------- | ------------------------------------------------------------ |
-| Framework  | Next.js (App Router)                                         |
-| UI         | React — Server Components, Client Components, Server Actions |
-| Language   | JavaScript                                                   |
-| Styling    | CSS Modules                                                  |
-| Validation | Zod                                                          |
+| Layer | Choice |
+| ---------- | ------------------------------------------------------------ |
+| Framework | Next.js (App Router) |
+| UI | React — Server Components, Client Components, Server Actions |
+| Language | JavaScript |
+| Styling | CSS Modules |
+| Validation | Zod |
+| Database | Sqlite + Drizzle ORM |
+| ---------- | ------------------------------------------------------------ |
